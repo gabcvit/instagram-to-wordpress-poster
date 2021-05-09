@@ -1,0 +1,32 @@
+{
+  "name": "wordpress-instagram-poster-bot",
+  "version": "1.0.0",
+  "description": "This repository is a personal experiment, by using Javascript and GitHub Actions I want to build a bot which will post new instagram content from a certain page to a Wordpress blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "start": "node src/app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabcvit/wordpress-instagram-poster-bot.git"
+  },
+  "keywords": [
+    "bot",
+    "wordpress",
+    "instagram",
+    "node"
+  ],
+  "author": "Gabriel Checchia Vitali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabcvit/wordpress-instagram-poster-bot/issues"
+  },
+  "homepage": "https://github.com/gabcvit/wordpress-instagram-poster-bot#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "node-fetch": "^2.6.1"
+  }
+}
