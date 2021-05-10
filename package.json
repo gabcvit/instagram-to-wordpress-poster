@@ -4,7 +4,7 @@
   "description": "This repository is a personal experiment, by using Javascript and GitHub Actions I want to build a bot which will post new instagram content from a certain page to a Wordpress blog",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "test-watch": "jest --watchAll",
     "start": "node src/app"
   },
