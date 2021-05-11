@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { getPostsFromPage } = require("./instagram-fetcher/instagram-fetcher-controller");
 const { PAGE_ID_TO_FETCH } = require("./instagram-fetcher/instagram-fetcher");
-const { getAllPosts } = require("./wordpress-poster/wordpress-poster-controller");
+const { getAllPosts, createNewPost } = require("./wordpress-poster/wordpress-poster-controller");
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.listen(port);
 console.log(`🚀 app listening on port ${port}`);
 
 async function loadPosts() {
-  let posts = await getAllPosts()
+  let posts = await createNewPost('New post')
   console.log("posts!!", posts)
 }
  
