@@ -1,22 +1,35 @@
 const fetch = require('node-fetch');
 const { WORDPRESS_REST_API, WORDPRESS_PASSWORD } = require('./wordpress-poster');
 
-const createNewPost = async (postTitle) => {
-  var params = {
-    status: 'draft',
-    "title": postTitle,
-    "content_raw": "Howdy updated content.",
-    "date": "2017-02-01T14:00:00+10:00"
+const convertStringToBase64= (value) => {
+  return Buffer.from(value).toString('base64')
+}
+
+const buildWordpressHeaders = () => {
+  let encodedLogin = ''
+  try {
+    encodedLogin = convertStringToBase64(WORDPRESS_PASSWORD)
+  } catch(e) {
+    console.log('buildWordpressHeaders Error', e)
+    throw(e)
   }
-  return await fetch(WORDPRESS_REST_API, {
+
+  return {
     method: "POST",
     headers:{
-      // 'Content-Type': 'application/json',
-      // "Accept": "application/json",
-      'Authorization': 'Basic ' + WORDPRESS_PASSWORD
+      'Content-Type': 'application/json',
+      "Accept": "application/json",
+      'Authorization': 'Basic ' + encodedLogin
     },
-    body: params
-  })
+  }
+}
+
+const createNewPost = async (body) => {
+  var params = buildWordpressHeaders()
+
+  params.body = JSON.stringify(body)
+
+  return await fetch(WORDPRESS_REST_API, params)
   .then(response => {
     return response.json()
   })
